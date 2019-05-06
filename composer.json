@@ -1,0 +1,24 @@
+{
+    "name": "benjaminferge/cqrs",
+    "description": "CQRS implementation.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Benjámin J. Ferge",
+            "email": "benjamin.ferge17@gmail.com"
+        }
+    ],
+    "require": {
+        "php-amqplib/php-amqplib": "^2.9",
+        "react/socket": "^1.2",
+        "ramsey/uuid": "^3.8",
+        "benjaminferge/event-store": "dev-master",
+        "benjaminferge/pub-sub": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "CQRS\\": "src/"
+        }
+    }
+}
