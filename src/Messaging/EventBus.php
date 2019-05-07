@@ -1,6 +1,6 @@
 <?php
 
-namespace CQRS;
+namespace CQRS\Messaging;
 
 use EventStore\Event;
 

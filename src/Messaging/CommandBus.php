@@ -1,6 +1,6 @@
 <?php
 
-namespace CQRS;
+namespace CQRS\Messaging;
 
 class CommandBus extends MessageBus
 {

@@ -48,12 +48,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/BenjaminFerge/pub-sub.git",
-                "reference": "ca08d6bb3be4bc4e36b9709a8d259cb043e614ae"
+                "reference": "d7ed5f73f50ec25ee35b75259eba7da59debd6d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BenjaminFerge/pub-sub/zipball/ca08d6bb3be4bc4e36b9709a8d259cb043e614ae",
-                "reference": "ca08d6bb3be4bc4e36b9709a8d259cb043e614ae",
+                "url": "https://api.github.com/repos/BenjaminFerge/pub-sub/zipball/d7ed5f73f50ec25ee35b75259eba7da59debd6d5",
+                "reference": "d7ed5f73f50ec25ee35b75259eba7da59debd6d5",
                 "shasum": ""
             },
             "require": {
@@ -78,7 +78,7 @@
                 }
             ],
             "description": "Pub/Sub implementation.",
-            "time": "2019-05-05T20:31:53+00:00"
+            "time": "2019-05-07T03:39:20+00:00"
         },
         {
             "name": "evenement/evenement",

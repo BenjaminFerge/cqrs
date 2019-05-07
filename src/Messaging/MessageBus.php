@@ -1,12 +1,12 @@
 <?php
 
-namespace CQRS;
+namespace CQRS\Messaging;
 
 use PubSub\PubSubServer;
 
-class Router
+abstract class MessageBus
 {
-    protected $routes;
+    protected $pubsub;
 
     public function __construct(PubSubServer $pubsub)
     {

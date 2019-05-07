@@ -6,8 +6,6 @@ use EventStore\EventStore;
 use Ramsey\Uuid\UuidInterface;
 use EventStore\Event;
 
-interface Aggregate
+interface AggregateRoot extends Entity
 {
-    public function handle(Command $cmd);
-    public function apply(Event $e);
 }

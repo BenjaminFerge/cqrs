@@ -1,7 +1,7 @@
 <?php
 use PubSub\AmqpPubSubClient;
 use CQRS\AggregateRepository;
-use CQRS\Aggregate;
+use CQRS\AggregateRoot;
 use Ramsey\Uuid\UuidInterface;
 use EventStore\Event;
 use EventStore\SqliteEventStore;
@@ -11,7 +11,7 @@ require __DIR__ . "/vendor/autoload.php";
 
 
 
-class User implements Aggregate
+class User implements AggregateRoot
 {
     public $changes = [];
     public $version = 0;

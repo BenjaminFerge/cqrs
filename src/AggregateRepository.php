@@ -34,9 +34,4 @@ class AggregateRepository
         }
         $aggr->markChangesAsCommitted();
     }
-
-    public function get(UuidInterface $id)
-    {
-        // TODO
-    }
 }

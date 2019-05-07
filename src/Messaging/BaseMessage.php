@@ -1,6 +1,6 @@
 <?php
 
-namespace CQRS;
+namespace CQRS\Messaging;
 
 abstract class BaseMessage
 {

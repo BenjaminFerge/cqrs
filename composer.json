@@ -18,7 +18,8 @@
     },
     "autoload": {
         "psr-4": {
-            "CQRS\\": "src/"
+            "CQRS\\": "src/",
+            "Test\\": "test/"
         }
     }
 }
