@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/BenjaminFerge/event-store.git",
-                "reference": "20e1d32b91feb1a34014334c6c81b6312dc4ed42"
+                "reference": "80206ed98668361cbbe45adb744b1818d5289e0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BenjaminFerge/event-store/zipball/20e1d32b91feb1a34014334c6c81b6312dc4ed42",
-                "reference": "20e1d32b91feb1a34014334c6c81b6312dc4ed42",
+                "url": "https://api.github.com/repos/BenjaminFerge/event-store/zipball/80206ed98668361cbbe45adb744b1818d5289e0e",
+                "reference": "80206ed98668361cbbe45adb744b1818d5289e0e",
                 "shasum": ""
             },
             "require": {
@@ -40,7 +40,7 @@
                 }
             ],
             "description": "Event sourcing library.",
-            "time": "2019-05-05T17:22:01+00:00"
+            "time": "2019-05-08T04:57:49+00:00"
         },
         {
             "name": "benjaminferge/pub-sub",

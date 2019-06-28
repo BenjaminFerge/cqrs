@@ -3,16 +3,14 @@
 namespace CQRS\Messaging;
 
 use EventStore\Event;
+use PubSub\PubSubServer;
+use EventStore\EventStore;
+use EventStore\DomainEvent;
 
 class EventBus extends MessageBus
 {
     public function getTypePrefix(): string
     {
         return "event";
-    }
-
-    public function publish(Event $e)
-    {
-        $this->_publish($e->getType(), \json_encode($e->getPayload()));
     }
 }

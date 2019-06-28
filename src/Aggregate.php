@@ -2,12 +2,42 @@
 
 namespace CQRS;
 
-use EventStore\EventStore;
-use Ramsey\Uuid\UuidInterface;
+use CQRS\Messaging\Command;
 use EventStore\Event;
+use EventStore\EventStore;
 
-interface Aggregate
+abstract class Aggregate
 {
-    public function handle(Command $cmd);
-    public function apply(Event $e);
+    private $root;
+    private $objs = [];
+    private $eventStore;
+
+    public function __construct(EventStore $eventStore)
+    {
+        $this->eventStore = $eventStore;
+    }
+    
+    public function setRoot(AggregateRoot $root)
+    {
+        $this->root = $root;
+    }
+
+    public function addObject($obj)
+    {
+        $this->objs[] = $obj;
+    }
+    
+    public function getRoot() : AggregateRoot
+    {
+        return $this->root;
+    }
+    
+    public function load()
+    {
+
+    }
+
+    abstract public function getAggregateType() : string;
+
+    abstract public function handle(Command $cmd) : Event;
 }

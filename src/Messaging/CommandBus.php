@@ -8,9 +8,4 @@ class CommandBus extends MessageBus
     {
         return "command";
     }
-
-    public function publish(Command $cmd)
-    {
-        $this->_publish($cmd->getType(), json_ecnode($cmd->getPayload()));
-    }
 }

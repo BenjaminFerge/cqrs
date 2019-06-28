@@ -2,25 +2,27 @@
 
 namespace CQRS\Messaging;
 
+use PubSub\PubSubClient;
 use PubSub\PubSubServer;
 
 abstract class MessageBus
 {
     protected $pubsub;
 
-    public function __construct(PubSubServer $pubsub)
+    public function __construct(PubSubClient $pubsub)
     {
         $this->pubsub = $pubsub;    
     }
 
-    public function subscribe(string $topic, callable $callback)
+    private function _publish(string $topic, string $data)
     {
-        $this->pubsub->subscribe($this->getTypePrefix() . ":" . $topic, $callback);
+        echo "publishing: " . $this->getTypePrefix() . ":" . $topic . PHP_EOL;
+        $this->pubsub->publish($this->getTypePrefix() . ":" . $topic, $data);
     }
 
-    protected function _publish(string $topic, string $data)
+    public function publish(Message $msg)
     {
-        $this->pubsub->publish($this->getTypePrefix() . ":" . $topic, $data);
+        $this->_publish($msg->getType(), json_encode($msg->getPayload()));
     }
 
     abstract public function getTypePrefix(): string;

@@ -2,7 +2,7 @@
 
 namespace CQRS\Messaging;
 
-abstract class BaseMessage
+abstract class BaseMessage implements Message
 {
     private $type;
     private $payload;
@@ -13,12 +13,12 @@ abstract class BaseMessage
         $this->payload = $payload;
     }
 
-    public function getType()
+    public function getType() : string
     {
         return $this->type;
     }
 
-    public function getPayload()
+    public function getPayload() : array
     {
         return $this->payload;
     }
