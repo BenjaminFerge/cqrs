@@ -30,7 +30,8 @@ class CommandHandler extends MessageHandler
             throw new \TypeError("CommandHandler must return with Event object");
         }
         echo "Occured: " . $e->getType() . PHP_EOL;
-        $this->client->publish($this->getTypePrefix() . ':' . $e->getType(), $e->toJson());
+        echo "Publishing event: " . $e->getType() . PHP_EOL;
+        $this->client->publish('event:' . $e->getType(), $e->toJson());
     }
 
     public function listen(string $topic, callable $handler) : void
@@ -43,12 +44,19 @@ class CommandHandler extends MessageHandler
     public function __invoke($msg) : void
     {
         echo "CommandHandler:__invoke" . PHP_EOL;
+        $command = null;
+        $data = null;
         if ($msg instanceof AMQPMessage) {
             $type = $msg->delivery_info["routing_key"];
             $data = json_decode($msg->getBody(), true);
-            $command = new Command($type, $data);
-            $this->handle($command);
+        } else {
+            echo "TCP Message:\n";
+            var_dump($msg);die();
+            $data = json_decode($msg, true);
         }
+
+        $command = new Command($type, $data);
+        $this->handle($command);
 
     }
 

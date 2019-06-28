@@ -13,6 +13,8 @@ use CQRS\Messaging\EventBus;
 use CQRS\EventHandler;
 use EventStore\Projector;
 use CQRS\MonoService;
+use PubSub\TcpPubSubServer;
+use PubSub\TcpPubSubClient;
 
 require __DIR__ . "/vendor/autoload.php";
 ini_set('display_errors', 1);
@@ -32,11 +34,6 @@ $commandHandler->listen("RegisterUser", function($data) {
 });
 
 
-
-$eventStore = new SqliteEventStore();
-$eventHandler = new EventHandler($server, $eventStore);
-$eventHandler->listen("UserRegistered");
-
 class UserProjection implements Projection
 {
     public function handle($state, Event $e)
@@ -46,7 +43,7 @@ class UserProjection implements Projection
         {
             case "UserRegistered":
                 echo "YAY USER REGISTERED!!!!\n";
-                // file_put_contents("user1.txt", json_encode($payload, JSON_PRETTY_PRINT));
+                file_put_contents(__DIR__ . "/user1.txt", json_encode($payload, JSON_PRETTY_PRINT));
                 // return $payload;
             break;
             case "UserChangedEmail":
@@ -61,6 +58,15 @@ class UserProjection implements Projection
         }
     }
 }
+
+$userProjection = new UserProjection();
+
+$eventStore = new SqliteEventStore(__DIR__ . '/db.sqlite');
+$userStream = $eventStore->createStream("User");
+$projector = new Projector($userProjection, $userStream, null, 0, Projector::VERBOSE);
+$eventStore->addProjector($projector);
+$eventHandler = new EventHandler($server, $eventStore);
+$eventHandler->listen("UserRegistered");
 
 $monoService = new MonoService($server);
 $monoService->attachHandler($commandHandler);

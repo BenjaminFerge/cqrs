@@ -10,6 +10,8 @@ use EventStore\DomainEvent;
 use Ramsey\Uuid\Uuid;
 use CQRS\Messaging\CommandBus;
 use CQRS\Messaging\Command;
+use PubSub\TcpPubSubClient;
+use PubSub\TcpPubSubMessage;
 
 require __DIR__ . "/vendor/autoload.php";
 ini_set('display_errors', 1);
@@ -24,3 +26,8 @@ $data = [
 $commandBus = new CommandBus($client);
 $registerUser = new Command("RegisterUser", $data);
 $commandBus->publish($registerUser);
+
+function cmd_decor(array $payload, string $routing_key)
+{
+    return array_merge($payload, compact('routing_key'));
+}
